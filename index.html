@@ -193,13 +193,44 @@ const resorts = [
       ['Budget-friendly', '3 pools + slides', 'Kids clubs', 'Sports', 'Tuscany'],
       'https://www.humontescudaio.it', '🏕️ Montescudaio, Tuscany')
   },
-  {
-    lat: 44.15, lng: 12.28, color: '#0ea5e9', size: 20,
-    html: popup('Club del Sole (29 villages)', 'Center Parcs + Landal-style ⭐', '#0369a1', '#e0f2fe',
-      "Italy's largest holiday village chain — the closest Italian equivalent to Center Parcs + Landal combined. 29 parks across Adriatic, Trentino, Tuscany, Maremma, Lake Garda. Wooden bungalows, lodges, private beaches, waterparks, Jeko mascot animation.",
-      ['29 villages', 'Bungalows & lodges', 'Private beaches', 'Waterparks', 'Kids animation', 'Multiple regions'],
-      'https://www.clubdelsole.com', '🏕️ Romagna Riviera + 8 Italian regions')
-  },
+  // CLUB DEL SOLE – all 29 individual properties
+  // Emilia Romagna
+  {lat:44.06,lng:12.57,color:'#0ea5e9',size:15,html:popup('Club del Sole – Rimini Family Resort','Center Parcs-style ⭐','#0369a1','#e0f2fe','Water park inside the village, activities for whole family, ideal for discovering Rimini nightlife. Bungalows & lodges.',['Family Resort','Waterpark','Private beach','Rimini'],'https://www.clubdelsole.com','🏕️ Viserba, Rimini, Emilia Romagna')},
+  {lat:44.00,lng:12.65,color:'#0ea5e9',size:15,html:popup('Club del Sole – Romagna Family Resort','Center Parcs-style ⭐','#0369a1','#e0f2fe','Heart of Riccione. Family Resort with pool, beach, restaurant, dog-friendly. Walking distance to beach.',['Family Resort','Beach','Dog friendly','Riccione'],'https://www.clubdelsole.com','🏕️ Riccione, Emilia Romagna')},
+  {lat:44.01,lng:12.64,color:'#0ea5e9',size:13,html:popup('Club del Sole – Riccione Easy Camping Village','Easy Camping Village','#0369a1','#e0f2fe','Nature-focused camping village in Riccione. Pitches and lodges in contact with nature.',['Easy Camping','Pitches & lodges','Riccione'],'https://www.clubdelsole.com','🏕️ Riccione, Emilia Romagna')},
+  {lat:44.39,lng:12.28,color:'#0ea5e9',size:13,html:popup('Club del Sole – Adriano Family Collection','Family Collection','#0369a1','#e0f2fe','Family collection village near Ravenna. Bungalows, pools, beach.',['Family Collection','Beach','Near Ravenna'],'https://www.clubdelsole.com','🏕️ Lido Adriano, Ravenna, Emilia Romagna')},
+  {lat:44.44,lng:12.27,color:'#0ea5e9',size:15,html:popup('Club del Sole – Marina Family Resort','Center Parcs-style ⭐','#0369a1','#e0f2fe','Water park with whirlpool, adult pool and kids pool. Close to Ravenna art city. Private beach.',['Family Resort','Waterpark','Private beach','Near Ravenna'],'https://www.clubdelsole.com','🏕️ Punta Marina Terme, Ravenna, Emilia Romagna')},
+  {lat:44.50,lng:12.26,color:'#0ea5e9',size:13,html:popup('Club del Sole – Marina Romea Easy Camping','Easy Camping Village','#0369a1','#e0f2fe','Camping village near Marina Romea, Ravenna coast.',['Easy Camping','Beach','Ravenna coast'],'https://www.clubdelsole.com','🏕️ Marina Romea, Ravenna, Emilia Romagna')},
+  {lat:44.26,lng:12.39,color:'#0ea5e9',size:15,html:popup('Club del Sole – Milano Marittima Boutique Resort','Boutique Resort ✨','#0369a1','#e0f2fe','Exclusive boutique-format village. Refined accommodation, privacy, well-being. Prestigious Milano Marittima location.',['Boutique Resort','Exclusive','Privacy','Wellness'],'https://www.clubdelsole.com','🏕️ Milano Marittima, Cervia, Emilia Romagna')},
+  {lat:44.25,lng:12.36,color:'#0ea5e9',size:13,html:popup('Club del Sole – Adriatico Cervia Easy Camping','Easy Camping Village','#0369a1','#e0f2fe','Easy camping village in Cervia. Simple, nature-focused stay.',['Easy Camping','Beach','Cervia'],'https://www.clubdelsole.com','🏕️ Cervia, Emilia Romagna')},
+  {lat:44.27,lng:12.38,color:'#0ea5e9',size:15,html:popup('Club del Sole – Pini Boutique Resort','Boutique Resort ✨','#0369a1','#e0f2fe','Boutique resort in pine forest near Milano Marittima. Small, refined, private setting.',['Boutique Resort','Pine forest','Exclusive','Wellness'],'https://www.clubdelsole.com','🏕️ Milano Marittima area, Emilia Romagna')},
+  {lat:44.05,lng:12.60,color:'#0ea5e9',size:13,html:popup('Club del Sole – Rivaverde Easy Camping','Easy Camping Village','#0369a1','#e0f2fe','Easy camping village on the Romagna Riviera.',['Easy Camping','Romagna Riviera'],'https://www.clubdelsole.com','🏕️ Romagna Riviera, Emilia Romagna')},
+  {lat:44.57,lng:12.31,color:'#0ea5e9',size:13,html:popup('Club del Sole – Spina Family Collection','Family Collection','#0369a1','#e0f2fe','Family collection village at Lido di Spina, near Ferrara. Beach, pools, bungalows.',['Family Collection','Beach','Near Ferrara'],'https://www.clubdelsole.com','🏕️ Lido di Spina, Ferrara, Emilia Romagna')},
+  {lat:44.69,lng:12.24,color:'#0ea5e9',size:13,html:popup('Club del Sole – Vigna sul Mar Family Collection','Family Collection','#0369a1','#e0f2fe','Family collection village at Lido di Volano area, northern Ferrara coast.',['Family Collection','Beach','Ferrara coast'],'https://www.clubdelsole.com','🏕️ Lido di Volano, Ferrara, Emilia Romagna')},
+  {lat:44.50,lng:11.34,color:'#0ea5e9',size:13,html:popup('Club del Sole – Bologna Easy Camping','Easy Camping Village','#0369a1','#e0f2fe','Easy camping village near Bologna for city breaks with nature.',['Easy Camping','Near Bologna','City break'],'https://www.clubdelsole.com','🏕️ Bologna, Emilia Romagna')},
+  // Tuscany
+  {lat:42.44,lng:11.22,color:'#0ea5e9',size:13,html:popup('Club del Sole – Orbetello Family Collection','Family Collection','#0369a1','#e0f2fe','Family village in the Maremma, Orbetello Lagoon area. Beach, nature, lagoon setting.',['Family Collection','Maremma','Lagoon','South Tuscany'],'https://www.clubdelsole.com','🏕️ Orbetello, Grosseto, Tuscany')},
+  {lat:43.87,lng:10.25,color:'#0ea5e9',size:13,html:popup('Club del Sole – Viareggio Family Collection','Family Collection','#0369a1','#e0f2fe','Family village in Viareggio, Versilia Riviera. Beach, Carnival city, near Lucca.',['Family Collection','Beach','Versilia','Carnival'],'https://www.clubdelsole.com','🏕️ Viareggio, Lucca, Tuscany')},
+  {lat:42.55,lng:11.05,color:'#0ea5e9',size:13,html:popup('Club del Sole – Stella del Mare Family Collection','Family Collection','#0369a1','#e0f2fe','Family village on the southern Tuscany coast. Beach, natural setting.',['Family Collection','Beach','South Tuscany'],'https://www.clubdelsole.com','🏕️ South Tuscany coast')},
+  {lat:43.31,lng:10.52,color:'#0ea5e9',size:13,html:popup('Club del Sole – Le Gorette Cecina Easy Camping','Easy Camping Village','#0369a1','#e0f2fe','Easy camping village near Cecina, Livorno coast. Nature and beach.',['Easy Camping','Beach','Near Livorno'],'https://www.clubdelsole.com','🏕️ Cecina, Livorno, Tuscany')},
+  // Abruzzo
+  {lat:42.68,lng:14.02,color:'#0ea5e9',size:13,html:popup('Club del Sole – Stork Family Collection','Family Collection','#0369a1','#e0f2fe','Family village on the Teramo coast, Abruzzo. Beach and Adriatic setting.',['Family Collection','Beach','Abruzzo','Adriatic'],'https://www.clubdelsole.com','🏕️ Teramo coast, Abruzzo')},
+  {lat:42.67,lng:14.02,color:'#0ea5e9',size:13,html:popup('Club del Sole – Roseto degli Abruzzi Easy Camping','Easy Camping Village','#0369a1','#e0f2fe','Easy camping village in Roseto degli Abruzzi, Teramo coast.',['Easy Camping','Beach','Abruzzo'],'https://www.clubdelsole.com','🏕️ Roseto degli Abruzzi, Teramo, Abruzzo')},
+  // Marche
+  {lat:43.25,lng:13.75,color:'#0ea5e9',size:13,html:popup('Club del Sole – La Risacca Family Collection','Family Collection','#0369a1','#e0f2fe','Family collection village in Porto Sant\'Elpidio, crystal-clear Marche sea.',['Family Collection','Beach','Marche'],'https://www.clubdelsole.com','🏕️ Porto Sant\'Elpidio, Fermo, Marche')},
+  {lat:43.24,lng:13.76,color:'#0ea5e9',size:15,html:popup('Club del Sole – Le Mimose Family Resort','Center Parcs-style ⭐','#0369a1','#e0f2fe','Sea-view pool, in-house restaurant, bungalows & lodges, private beach. Great for exploring Marche region.',['Family Resort','Sea-view pool','Restaurant','Bungalows','Marche'],'https://www.clubdelsole.com','🏕️ Porto Sant\'Elpidio, Fermo, Marche')},
+  // Lake Garda
+  {lat:45.47,lng:10.53,color:'#0ea5e9',size:15,html:popup('Club del Sole – Desenzano Boutique Resort','Boutique Resort ✨','#0369a1','#e0f2fe','Exclusive boutique resort on Lake Garda at Desenzano. Refined setting, wellness, small village feel.',['Boutique Resort','Lake Garda','Exclusive','Wellness'],'https://www.clubdelsole.com','🏕️ Desenzano del Garda, Brescia')},
+  {lat:45.50,lng:10.73,color:'#0ea5e9',size:13,html:popup('Club del Sole – Le Palme Lazise Family Collection','Family Collection','#0369a1','#e0f2fe','Family collection village at Lazise, Lake Garda. Pools, beach, activities.',['Family Collection','Lake Garda','Pools','Lazise'],'https://www.clubdelsole.com','🏕️ Lazise, Verona, Lake Garda')},
+  // Veneto
+  {lat:45.51,lng:12.64,color:'#0ea5e9',size:15,html:popup('Club del Sole – Jesolo Family Resort','Center Parcs-style ⭐','#0369a1','#e0f2fe','Less than 1hr from Venice. Pool, private beach, restaurant, wellness. Surrounded by greenery in Lido di Jesolo.',['Family Resort','Private beach','Pool','Near Venice','Restaurant'],'https://www.clubdelsole.com','🏕️ Lido di Jesolo, Venice, Veneto')},
+  // Friuli-Venezia Giulia
+  {lat:45.73,lng:13.43,color:'#0ea5e9',size:13,html:popup('Club del Sole – Marina Julia Family Collection','Family Collection','#0369a1','#e0f2fe','Family collection village at Marina Julia, on the Friuli Adriatic coast near Grado.',['Family Collection','Adriatic','Near Grado','Friuli'],'https://www.clubdelsole.com','🏕️ Marina Julia, Gorizia, Friuli-VG')},
+  {lat:45.68,lng:13.39,color:'#0ea5e9',size:15,html:popup('Club del Sole – Tenuta Primero Grado Family Resort','Center Parcs-style ⭐','#0369a1','#e0f2fe','Primero Waterland water park (new 2026!), 18-hole golf course, 2 restaurants, Marina with boat moorings, exclusive suites. Grado lagoon.',['Family Resort','NEW Waterpark 2026','Golf course','Marina','Grado lagoon'],'https://www.clubdelsole.com','🏕️ Grado, Gorizia, Friuli-VG')},
+  // Trentino Alto Adige
+  {lat:46.01,lng:11.30,color:'#0ea5e9',size:13,html:popup('Club del Sole – Due Laghi Levico Family Collection','Family Collection','#0369a1','#e0f2fe','Family collection village at Levico Terme, between two lakes (Levico & Caldonazzo). Mountain setting.',['Family Collection','Lake','Mountains','Trentino'],'https://www.clubdelsole.com','🏕️ Levico Terme, Trento, Trentino')},
+  {lat:46.00,lng:11.25,color:'#0ea5e9',size:13,html:popup('Club del Sole – Caldonazzo Family Collection','Family Collection','#0369a1','#e0f2fe','Family collection village on Lake Caldonazzo. Swimming lake, mountain activities.',['Family Collection','Lake swimming','Mountains','Trentino'],'https://www.clubdelsole.com','🏕️ Caldonazzo, Trento, Trentino')},
+  {lat:46.30,lng:11.47,color:'#0ea5e9',size:13,html:popup('Club del Sole – Val di Fiemme Easy Camping','Easy Camping Village','#0369a1','#e0f2fe','Mountain camping village in Val di Fiemme, Dolomites. Hiking, cycling, alpine setting.',['Easy Camping','Mountains','Dolomites','Val di Fiemme'],'https://www.clubdelsole.com','🏕️ Val di Fiemme, Trento, Trentino')},
   {
     lat: 45.55, lng: 12.75, color: '#0ea5e9', size: 16,
     html: popup('Eurocamp / Roan – Pra\'delle Torri', 'Landal-style', '#0369a1', '#e0f2fe',
@@ -227,6 +258,64 @@ const resorts = [
       'Self-catering residence on Lake Garda near Verona. Pools, lake views, family apartments.',
       ['Self-catering apartments', 'Lake Garda', 'Near Verona', 'Mid-range'],
       'https://www.pierreetvacances.com', '🏕️ Garda, Lake Garda')
+  },
+
+  // ADDITIONAL LUXURY FAMILY RESORTS
+  {
+    lat: 46.78, lng: 11.17, color: '#7c3aed', size: 16,
+    html: popup('Quellenhof Luxury Resort Passeier', 'Familux-style – 5★', '#5b21b6', '#ede9fe',
+      '5-star luxury family resort 10km from Merano. Kids club Mon–Sat 9am–9pm, ages 2+. Action Park, Acqua Family Parc with slides & lazy river, 3D cinema, climbing hall.',
+      ['5-star', 'Kids club 2+', 'Acqua Family Parc', 'Action Park', '3D cinema', 'Half/full board'],
+      'https://www.quellenhof.it/en', '🏔️ San Martino in Passiria, Merano, South Tyrol')
+  },
+  {
+    lat: 46.70, lng: 11.93, color: '#7c3aed', size: 16,
+    html: popup('Excelsior Dolomites Life Resort', 'Familux-style – 4★S', '#5b21b6', '#ede9fe',
+      'Ski-in/ski-out in San Vigilio di Marebbe. Play castle, climbing wall, farm visits, rope course, Junior club with gaming. Indoor + outdoor pools, spa.',
+      ['4-star superior', 'Ski-in/ski-out', 'Kids adventure club', 'Junior club', 'Spa', 'Dolomites'],
+      'https://www.myexcelsior.com', '🏔️ San Vigilio di Marebbe, South Tyrol')
+  },
+  {
+    lat: 45.50, lng: 10.74, color: '#7c3aed', size: 16,
+    html: popup('Quellenhof Lazise – Lake Garda', 'Familux-style – 5★', '#5b21b6', '#ede9fe',
+      'Lake Garda sister property of Quellenhof Passeier. 5-star, extensive kids facilities, outdoor pools, family suites. Same luxury family formula on the lake.',
+      ['5-star', 'Lake Garda', 'Kids facilities', 'Outdoor pools', 'Family suites'],
+      'https://www.quellenhof-lazise.it/en', '🏕️ Lazise, Lake Garda')
+  },
+  {
+    lat: 45.57, lng: 10.70, color: '#7c3aed', size: 14,
+    html: popup('Gardea Soulfamily Resort', 'Familux-style – 5★', '#5b21b6', '#ede9fe',
+      'New boutique 5-star family resort on Lake Garda. 36 rooms, 3 pools, dedicated kids club.',
+      ['5-star', 'Boutique', 'Lake Garda', '3 pools', 'Kids club'],
+      'https://www.gardeahotel.com', '🏕️ Lake Garda')
+  },
+  {
+    lat: 45.60, lng: 10.72, color: '#7c3aed', size: 14,
+    html: popup('Le Torri del Garda', 'Familux-style – 4★S', '#5b21b6', '#ede9fe',
+      '4-star superior on Lake Garda. Kidsclub (ages 3–6) + Juniorclub (7–11), seasonal June–August.',
+      ['4-star superior', 'Lake Garda', 'Kids club 3-6', 'Junior club 7-11', 'Seasonal'],
+      'https://www.letorridelgarda.com', '🏕️ Lake Garda')
+  },
+  {
+    lat: 40.77, lng: 9.67, color: '#7c3aed', size: 16,
+    html: popup('Baglioni Resort Sardinia', 'Familux-style – 5★ Luxury', '#5b21b6', '#ede9fe',
+      'Leading Hotels of the World, opened 2021. Near Tavolara Marine Protected Area. Kids club ages 4–12 (mid-May to mid-Sept): dancing, crafts, nature activities.',
+      ['5-star', 'Leading Hotels', 'Kids club 4-12', 'Tavolara', 'NE Sardinia', 'Luxury'],
+      'https://sardinia.baglionihotels.com', '🏖️ San Teodoro, Sassari, NE Sardinia')
+  },
+  {
+    lat: 41.19, lng: 9.17, color: '#7c3aed', size: 18,
+    html: popup('Resort Valle dell\'Erica – Delphina', 'Familux-style – 5★', '#5b21b6', '#ede9fe',
+      '28-hectare park with private coves, thalasso spa. Baby Club (12–36m), Mini Club (3–9, free, 9am–11pm), Junior Club (10–13). Sailing, snorkelling, Robinson Crusoe days. Two 5-star hotels in complex.',
+      ['5-star', 'Baby club 12m+', 'Mini club 3-9 FREE', 'Junior club', '28ha park', 'Private coves', 'Thalasso spa'],
+      'https://www.hotelvalledellerica.com', '🏖️ Santa Teresa Gallura, N. Sardinia')
+  },
+  {
+    lat: 40.97, lng: 8.90, color: '#7c3aed', size: 14,
+    html: popup('Resort & SPA Le Dune – Delphina', 'Familux-style – 4★S', '#5b21b6', '#ede9fe',
+      'Delphina Hotels group, Badesi. Mini Club + Junior Club, spa, beach, excursions.',
+      ['4-star superior', 'Mini club', 'Junior club', 'Spa', 'Badesi beach', 'Sardinia'],
+      'https://www.delphinahotels.com', '🏖️ Badesi, N. Sardinia')
   },
 
   // ROBINSON (1 property)
