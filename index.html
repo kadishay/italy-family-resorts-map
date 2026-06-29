@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Italy Family Resort Brands</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; }
+  #map { height: 100vh; width: 100%; }
+  .legend {
+    position: absolute;
+    bottom: 30px;
+    left: 10px;
+    z-index: 1000;
+    background: white;
+    border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    font-size: 13px;
+    max-width: 240px;
+  }
+  .legend h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: #1a1a1a; }
+  .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+  .legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; border: 2px solid rgba(0,0,0,0.2); }
+  .legend-label { color: #333; line-height: 1.3; }
+  .info-panel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    background: white;
+    border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    font-size: 13px;
+    max-width: 260px;
+  }
+  .info-panel h2 { font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+  .info-panel p { color: #666; font-size: 12px; }
+  .leaflet-popup-content { font-size: 13px; line-height: 1.5; min-width: 200px; }
+  .popup-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+  .popup-tag { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 11px; font-weight: 600; margin-bottom: 6px; }
+  .popup-desc { color: #444; margin-bottom: 6px; }
+  .popup-features { display: flex; flex-wrap: wrap; gap: 4px; }
+  .popup-feature { background: #f0f0f0; border-radius: 4px; padding: 2px 6px; font-size: 11px; color: #555; }
+  a.popup-link { color: #2563eb; text-decoration: none; font-size: 12px; }
+  a.popup-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div class="info-panel">
+  <h2>🇮🇹 Italy Family Resort Brands</h2>
+  <p>Similar to Familux, Center Parcs &amp; Landal<br><em>Click any marker for details</em></p>
+</div>
+<div class="legend">
+  <h3>Category</h3>
+  <div class="legend-item"><div class="legend-dot" style="background:#dc2626"></div><div class="legend-label"><strong>Feuerstein</strong> – Your reference property</div></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div><div class="legend-label"><strong>Familux-style</strong> – Luxury, age-grouped kids clubs</div></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#0ea5e9"></div><div class="legend-label"><strong>Center Parcs-style</strong> – Village, bungalows, nature</div></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#16a34a"></div><div class="legend-label"><strong>Italian Village</strong> – All-inclusive sea villages</div></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ea580c"></div><div class="legend-label"><strong>Sardinia Specialist</strong></div></div>
+</div>
+<script>
+const map = L.map('map').setView([42.5, 12.5], 6);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors',
+  maxZoom: 18
+}).addTo(map);
+
+function makeIcon(color, size = 16) {
+  return L.divIcon({
+    className: '',
+    html: `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${color};border:2.5px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.35);"></div>`,
+    iconSize: [size, size],
+    iconAnchor: [size/2, size/2]
+  });
+}
+
+function popup(title, tag, tagColor, tagBg, desc, features, website, props = '') {
+  const featHtml = features.map(f => `<span class="popup-feature">${f}</span>`).join('');
+  return `<div class="popup-title">${title}</div>
+<span class="popup-tag" style="color:${tagColor};background:${tagBg}">${tag}</span>
+<div class="popup-desc">${desc}</div>
+<div class="popup-features">${featHtml}</div>
+${props ? `<div style="margin-top:6px;font-size:12px;color:#666">${props}</div>` : ''}
+${website ? `<div style="margin-top:8px"><a class="popup-link" href="${website}" target="_blank">→ Visit website</a></div>` : ''}`;
+}
+
+const resorts = [
+  // FAMILUX-STYLE (purple)
+  {
+    lat: 46.57, lng: 11.67, color: '#7c3aed', size: 18,
+    html: popup('Cavallino Bianco (Ortisei)', 'Familux-style', '#5b21b6', '#ede9fe',
+      'Most famous luxury family hotel in Italy. Kids clubs for 4 age groups (0–3, 3–6, 7–12, teens). Mountain/ski Dolomites setting.',
+      ['All-inclusive', 'Kids clubs 0-17', 'Mountain', 'Pools', 'Ski'],
+      'https://www.cavallino-bianco.com', '🏔️ Val Gardena, South Tyrol')
+  },
+  {
+    lat: 46.88, lng: 12.13, color: '#7c3aed', size: 16,
+    html: popup('Kinderhotels – Garberhof Dolomit Family', 'Familux-style', '#5b21b6', '#ede9fe',
+      'Part of Kinderhotels Europa – closest Italian equivalent to Familux. Age-grouped childcare 0-3, 3-6, 7-12, teens. All-inclusive.',
+      ['All-inclusive', 'Age-grouped clubs', 'Mountain', 'Dolomites', 'Certified'],
+      'https://www.kinderhotels.com', '🏔️ Antholz/Anterselva, South Tyrol')
+  },
+  {
+    lat: 46.72, lng: 11.35, color: '#7c3aed', size: 16,
+    html: popup('Kinderhotels – Hotel Sonnwies', 'Familux-style', '#5b21b6', '#ede9fe',
+      'Kinderhotels Europa certified luxury family hotel in the Dolomites with professional childcare by age group.',
+      ['All-inclusive', 'Age-grouped clubs', 'Mountain', 'Spa', 'Nature'],
+      'https://www.kinderhotels.com', '🏔️ South Tyrol, Dolomites')
+  },
+  {
+    lat: 46.68, lng: 11.62, color: '#7c3aed', size: 16,
+    html: popup('Falkensteiner Family Resort Lido', 'Familux-style', '#5b21b6', '#ede9fe',
+      'Premium Austrian-Italian hotel group. "Falky" kids brand with Montessori-inspired childcare 7 days/week 9am-9pm, mountain setting.',
+      ['Kids club 0-17', 'Mountain', 'Spa & Wellness', 'Falky brand', 'Nature camps'],
+      'https://www.falkensteiner.com', '🏔️ South Tyrol')
+  },
+  {
+    lat: 45.49, lng: 10.62, color: '#7c3aed', size: 16,
+    html: popup('Falkensteiner Resort Lake Garda', 'Familux-style', '#5b21b6', '#ede9fe',
+      'Falkensteiner property on Lake Garda with Falky kids program, nature camps, watersports.',
+      ['Kids club', 'Lake Garda', 'Water sports', 'Falky brand'],
+      'https://www.falkensteiner.com', '🏔️ Lake Garda, Northern Italy')
+  },
+  {
+    lat: 45.51, lng: 12.65, color: '#7c3aed', size: 16,
+    html: popup('Falkensteiner Hotel & Spa Jesolo', 'Familux-style', '#5b21b6', '#ede9fe',
+      'Falkensteiner beach property with full Falky kids club. Adriatic coast, Venice nearby.',
+      ['Kids club', 'Beach', 'Adriatic', 'Falky brand', 'Venice nearby'],
+      'https://www.falkensteiner.com', '🏖️ Jesolo, Adriatic Coast')
+  },
+  {
+    lat: 44.96, lng: 6.82, color: '#7c3aed', size: 16,
+    html: popup('Club Med Pragelato-Sestriere', 'Familux-style', '#5b21b6', '#ede9fe',
+      "Italy's only true Club Med family resort. Kids clubs for ages 2-10 + teen club in the Via Lattea ski domain. All-inclusive.",
+      ['All-inclusive', 'Kids clubs 2-17', 'Ski resort', 'Via Lattea', 'Alpine'],
+      'https://www.clubmed.com', '⛷️ Pragelato, Piemonte Alps')
+  },
+  {
+    lat: 38.95, lng: 8.90, color: '#7c3aed', size: 20,
+    html: popup('Forte Village Resort', 'Familux-style + Center Parcs', '#5b21b6', '#ede9fe',
+      "Italy's most decorated family resort (World's Leading Resort 24 years). 8 hotels on 47 hectares. Baby/Mini/Junior clubs. 21 restaurants. Family bungalows & villas.",
+      ['Ultra-luxury', 'Kids clubs 0-17', 'Bungalows & villas', 'Private beach', '21 restaurants', 'Self-contained'],
+      'https://www.fortevillageresort.com', '🏖️ Santa Margherita di Pula, Sardinia')
+  },
+  {
+    lat: 39.33, lng: 9.57, color: '#7c3aed', size: 16,
+    html: popup('Falkensteiner Resort Capo Boi', 'Familux-style', '#5b21b6', '#ede9fe',
+      'Falkensteiner premium beach resort in Sardinia with full Falky kids program.',
+      ['Kids club', 'Beach', 'Sardinia', 'Falky brand', 'Premium'],
+      'https://www.falkensteiner.com', '🏖️ Capo Boi, Sardinia')
+  },
+
+  // FEUERSTEIN (star marker - highlighted)
+  {
+    lat: 46.95, lng: 11.43, color: '#dc2626', size: 22,
+    html: popup('⭐ Feuerstein Nature Family Resort', 'Familux-style — 5★ IN ITALY', '#991b1b', '#fee2e2',
+      'South Tyrol luxury family resort. 70h/week Montessori-inspired childcare ages 0–16. 3/4 Luxury Board included. 3,000m² Mountain Spa, equestrian centre with Haflinger horses, family chalets. 100% energy self-sufficient.',
+      ['5-star', '70h/week childcare 0-16', 'Luxury Board incl.', 'Chalets & suites', 'Equestrian centre', 'Mountain Spa', 'Montessori', 'South Tyrol'],
+      'https://www.feuerstein.info/en', '🏔️ Pflersch Valley, Colle Isarco, South Tyrol — ITALY')
+  },
+
+  // CENTER PARCS / LANDAL STYLE (blue)
+  {
+    lat: 45.43, lng: 10.72, color: '#0ea5e9', size: 18,
+    html: popup('Bella Italia Resort', 'Center Parcs-style', '#0369a1', '#e0f2fe',
+      'Large self-contained resort on Lake Garda. Bungalows, kids clubs, 4 restaurants, pools, sports (tennis, archery, volleyball, basketball). Very Center Parcs feel.',
+      ['Bungalows', 'Kids club', 'Lake Garda', '4 restaurants', 'Sports', 'Self-contained'],
+      'https://www.camping-bellaitalialagodisarda.it', '🏕️ Peschiera del Garda')
+  },
+  {
+    lat: 45.47, lng: 12.38, color: '#0ea5e9', size: 18,
+    html: popup('Marina di Venezia', 'Center Parcs-style', '#0369a1', '#e0f2fe',
+      'Colossal holiday park with a big waterpark. 4.6/5 Google rating. Ferry to Venice (30 min, €10-15). Bungalows & mobile homes.',
+      ['Waterpark', 'Bungalows', 'Ferry to Venice', 'High rated', 'Adriatic coast'],
+      'https://www.marinadivenezia.it', '🏕️ Venice Riviera, Veneto')
+  },
+  {
+    lat: 45.96, lng: 9.07, color: '#0ea5e9', size: 16,
+    html: popup('Parco San Marco Beach Resort', 'Center Parcs-style', '#0369a1', '#e0f2fe',
+      'Spacious apartments with kitchenettes on Lake Lugano (12km from Lake Como). 3 kids clubs with age-appropriate activities. Beach and pools.',
+      ['Apartments/kitchenettes', '3 kids clubs', 'Lake Lugano', 'Beach', 'Near Lake Como'],
+      'https://www.parcosanmarco.it', '🏕️ Lake Lugano/Como, Lombardy')
+  },
+  {
+    lat: 43.37, lng: 10.63, color: '#0ea5e9', size: 16,
+    html: popup('Hu Montescudaio', 'Center Parcs-style', '#0369a1', '#e0f2fe',
+      'Budget-friendly Tuscany resort with 3 pools, waterslides, kids splash area, kids clubs, sports. Best value Center Parcs-style option in Italy.',
+      ['Budget-friendly', '3 pools + slides', 'Kids clubs', 'Sports', 'Tuscany'],
+      'https://www.humontescudaio.it', '🏕️ Montescudaio, Tuscany')
+  },
+  {
+    lat: 44.15, lng: 12.28, color: '#0ea5e9', size: 20,
+    html: popup('Club del Sole (29 villages)', 'Center Parcs + Landal-style ⭐', '#0369a1', '#e0f2fe',
+      "Italy's largest holiday village chain — the closest Italian equivalent to Center Parcs + Landal combined. 29 parks across Adriatic, Trentino, Tuscany, Maremma, Lake Garda. Wooden bungalows, lodges, private beaches, waterparks, Jeko mascot animation.",
+      ['29 villages', 'Bungalows & lodges', 'Private beaches', 'Waterparks', 'Kids animation', 'Multiple regions'],
+      'https://www.clubdelsole.com', '🏕️ Romagna Riviera + 8 Italian regions')
+  },
+  {
+    lat: 45.55, lng: 12.75, color: '#0ea5e9', size: 16,
+    html: popup('Eurocamp / Roan – Pra\'delle Torri', 'Landal-style', '#0369a1', '#e0f2fe',
+      'British operator with mobile home & lodge accommodation. Roan premium tier with on-site reps. New Primero Waterland waterpark launching 2026.',
+      ['Mobile homes/lodges', 'Budget-mid', 'New waterpark 2026', 'Adriatic coast'],
+      'https://www.roan.co.uk', '🏕️ Caorle, Adriatic Coast')
+  },
+  {
+    lat: 43.77, lng: 11.25, color: '#0ea5e9', size: 16,
+    html: popup('Eurocamp – Norcenni Girasole', 'Landal-style', '#0369a1', '#e0f2fe',
+      'Mobile home & lodge accommodation in Tuscany hills near Florence. Family-friendly Eurocamp park with pool and activities.',
+      ['Mobile homes/lodges', 'Tuscany hills', 'Near Florence', 'Budget-mid', 'Pool'],
+      'https://www.eurocamp.co.uk', '🏕️ Figline Valdarno, Tuscany')
+  },
+  {
+    lat: 38.93, lng: 8.78, color: '#0ea5e9', size: 16,
+    html: popup('Pierre & Vacances – Grande Baia Resort', 'Landal-style', '#0369a1', '#e0f2fe',
+      'French self-catering apartment/residence brand. Beach setting in Sardinia, outdoor pools, some kids club.',
+      ['Self-catering apartments', 'Beach', 'Sardinia', 'Pools', 'Mid-range'],
+      'https://www.pierreetvacances.com', '🏕️ Porto San Paolo, Sardinia')
+  },
+  {
+    lat: 45.42, lng: 10.99, color: '#0ea5e9', size: 16,
+    html: popup('Pierre & Vacances – Poiano Resort', 'Landal-style', '#0369a1', '#e0f2fe',
+      'Self-catering residence on Lake Garda near Verona. Pools, lake views, family apartments.',
+      ['Self-catering apartments', 'Lake Garda', 'Near Verona', 'Mid-range'],
+      'https://www.pierreetvacances.com', '🏕️ Garda, Lake Garda')
+  },
+
+  // ROBINSON (1 property)
+  {
+    lat: 39.97, lng: 18.15, color: '#7c3aed', size: 16,
+    html: popup('Robinson Club Apulia', 'Familux-style (mid)', '#5b21b6', '#ede9fe',
+      'TUI premium all-inclusive club resort in Salento. 464 rooms across 210,000m² of pine forest. Waterpark, 4 restaurants, ROBY CLUB program ages 0-17, 7 days/week.',
+      ['All-inclusive', 'Kids club 0-17', 'Waterpark', 'Pine forest', '4 restaurants', 'Premium-mid'],
+      'https://www.robinson.com', '🏖️ Ugento, Salento, Puglia')
+  },
+
+  // ITALIAN VILLAGE BRANDS (green) — representative locations
+  {
+    lat: 40.55, lng: 17.48, color: '#16a34a', size: 18,
+    html: popup('Bluserena (13 villages)', 'Italian Village Brand ⭐', '#14532d', '#dcfce7',
+      'Italy\'s best native family hotel chain. 13 villages in Puglia (x6), Calabria (x2), Sicily (x1), Sardinia (x2), Abruzzo (x2). All-inclusive option, kids clubs, beach. Rated "la catena amica delle famiglie".',
+      ['13 villages', 'All-incl option', 'Kids clubs', 'Beaches', 'Puglia/Calabria/Sicily/Sardinia/Abruzzo'],
+      'https://www.bluserena.it', '🏖️ Southern Italy + Islands')
+  },
+  {
+    lat: 40.35, lng: 18.10, color: '#16a34a', size: 16,
+    html: popup('Nicolaus Club / Valtur (30+ villages)', 'Italian Village Brand', '#14532d', '#dcfce7',
+      'Two brands (same group) covering most of southern Italy. Nicolaus: Baby Club (3-7), Mini Club (8-11), mascot Nicolino. Valtur: legacy brand since 1960s, Junior Club (12-16). All-inclusive.',
+      ['30+ villages', 'All-inclusive', 'Kids clubs by age', 'Puglia/Sicily/Sardinia/Calabria', 'Long-standing brand'],
+      'https://www.nicolaus.it', '🏖️ Puglia, Sicily, Sardinia, Calabria')
+  },
+  {
+    lat: 38.65, lng: 16.55, color: '#16a34a', size: 16,
+    html: popup('Bravo Club / Alpitour (35+ villages)', 'Italian Village Brand', '#14532d', '#dcfce7',
+      "Italy's largest tour operator (Alpitour) runs Bravo — Italy's biggest family village vacation brand by volume. 'Bravo Bimbo' & 'Super Bravo Bimbo' kids programs, B.Free teens. All-inclusive.",
+      ['35+ villages', 'All-inclusive', 'Kids programs', 'Teen club', 'Mainstream family'],
+      'https://www.alpitour.it', '🏖️ Southern Italy, Islands & International')
+  },
+  {
+    lat: 39.15, lng: 8.65, color: '#16a34a', size: 16,
+    html: popup('Veraclub (5-6 villages)', 'Italian Village Brand', '#14532d', '#dcfce7',
+      'Italian tour operator with owned "Veraclub" villages. Mascot PanteraVera, Superminiclub for kids. Focus on Sardinia (x3), Calabria (x2), Sicily (x1). Loyal following.',
+      ['6 villages', 'Kids club', 'Sardinia specialist', 'All-inclusive', 'PanteraVera mascot'],
+      'https://www.veratour.it', '🏖️ Sardinia, Calabria, Sicily')
+  },
+
+  // SARDINIA SPECIALIST (orange)
+  {
+    lat: 41.18, lng: 9.38, color: '#ea580c', size: 18,
+    html: popup('Club Esse (12 villages – Sardinia only)', 'Sardinia Specialist', '#9a3412', '#ffedd5',
+      'Sardinia-specialist family resort chain. 12 villages in prime beach locations (near Legambiente award-winning beaches). "Hero Camp" kids program with mascot Pink Hero. Gallura/Costa Smeralda, Stintino, Cala Gonone, Aglientu.',
+      ['12 Sardinia villages', 'Hero Camp kids club', 'Award-winning beaches', 'Pools', 'Nature activities'],
+      'https://www.clubesse.it', '🏖️ Sardinia – Gallura, Stintino, Cala Gonone')
+  },
+
+  // Sicily
+  {
+    lat: 38.04, lng: 14.02, color: '#7c3aed', size: 14,
+    html: popup('Club Med Cefalù', 'Premium resort (adult-skewing)', '#5b21b6', '#ede9fe',
+      'Club Med "Exclusive Collection" property. More adult-focused than Pragelato. Beautiful Sicily beach setting. All-inclusive.',
+      ['All-inclusive', 'Beach', 'Sicily', 'Premium', 'Adult-leaning'],
+      'https://www.clubmed.com', '🏖️ Cefalù, Sicily')
+  },
+];
+
+resorts.forEach(r => {
+  const icon = makeIcon(r.color, r.size);
+  L.marker([r.lat, r.lng], { icon })
+    .bindPopup(r.html, { maxWidth: 300 })
+    .addTo(map);
+});
+
+// Fit Italy bounds
+map.fitBounds([[35.5, 6.5], [47.5, 18.5]]);
+</script>
+</body>
+</html>
